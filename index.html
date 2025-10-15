@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
+    <style type="text/tailwindcss">
+        /* These styles will all be purged */
+            @tailwind base;
+            @tailwind components;
+            @tailwind utilities;
+
+            /* These styles will be purged */
+
+            @layer base {
+                :root {
+                    --color-cyan-500: theme('colors.cyan.500');
+                    --color-purple-500: theme('colors.purple.500');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 400;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Light.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 400;
+                    font-style: italic;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-LightItalic.woff') format('woff');
+                }
+
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 500;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Regular.woff') format('woff2');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 500;
+                    font-style: italic;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Italic.woff') format('woff2');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 600;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Medium.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 600;
+                    font-style: italic;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-MediumItalic.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 700;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Semibold.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 700;
+                    font-style: italic;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-SemiboldItalic.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 800;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-Bold.woff') format('woff');
+                }
+                @font-face {
+                    font-family: IBM Plex Sans;
+                    font-weight: 800;
+                    font-style: italic;
+                    src: url('https://cdn.rareblocks.xyz/fonts/IBMPlexSans/IBMPlexSans-BoldItalic.woff') format('woff');
+                }
+                body {
+                    font-family: 'IBM Plex Sans';
+                }
+                .font-sans {
+                    font-family: 'IBM Plex Sans';
+                }
+            }
+            @layer components {
+            }
+            @layer utilities {
+            }
+        </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['IBM Plex Sans'],
+                },
+                extend: {
+                    colors: {
+                        gray: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                        },
+                        base: {
+                            900: '#090914',
+                        },
+                        cyan: {
+                            500: '#6DDCFF',
+                        },
+                        purple: {
+                            500: '#7F60F9',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body>
+    <div class="">
+        <header class="py-4 bg-gray-900 sm:py-6" x-data="{expanded: false}">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <div class="shrink-0">
+                        <a href="#" title="" class="flex">
+                            <img class="w-auto h-20" src="public/images/Dienguix_BG.png" alt="Logo Dienguix" />
+                        </a>
+                    </div>
+                    <div class="flex md:hidden">
+                        <button type="button" class="text-white" @click="expanded = !expanded"
+                            :aria-expanded="expanded">
+                            <span x-show="!expanded" aria-hidden="true">
+                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </span>
+
+                            <span x-show="expanded" aria-hidden="true">
+                                <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+
+                    <nav class="hidden space-x-10 md:flex md:items-center md:justify-center lg:space-x-12">
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-yellow-400">
+                            Accueil
+                        </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-yellow-400">
+                            À Propos
+                        </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-yellow-400">
+                            Produits
+                        </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-yellow-400">
+                            Contacter
+                        </a>
+                    </nav>
+
+
+                    <div class="relative hidden md:justify-center md:items-center md:inline-flex group">
+                        <div
+                            class="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                        </div>
+                        <a href="#"
+                            class="relative inline-flex items-center justify-center px-6 py-2 text-base font-semibold text-yellow-400 bg-black border border-transparent rounded-full group-hover:text-black group-hover:bg-yellow-400 transition-colors duration-200"
+                            role="button">
+                            Télécharger
+                        </a>
+                    </div>
+
+                </div>
+
+                <nav x-show="expanded" x-collapse>
+                    <div class="flex flex-col pt-8 pb-4 space-y-6">
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">
+                            Acceuil </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> à
+                            Propos </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">
+                            Produits </a>
+
+                        <a href="#" title=""
+                            class="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white">
+                            Contacter </a>
+
+                        <div class="relative inline-flex items-center justify-center group">
+                            <!-- Dégradé jaune en arrière-plan -->
+                            <div
+                                class="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                            </div>
+                            <!-- Bouton -->
+                            <a href="#" title=""
+                                class="relative inline-flex items-center justify-center w-full px-6 py-2 text-base font-semibold text-yellow-400 bg-black border border-transparent rounded-full group-hover:text-black group-hover:bg-yellow-400 transition-colors duration-200"
+                                role="button">
+                                Télécharger maintenant
+                            </a>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section class="py-12 bg-gray-900 sm:pb-16 lg:pb-20 xl:pb-24">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                <div class="grid items-center max-w-5xl grid-cols-1 mx-auto gap-y-8 lg:grid-cols-5 gap-x-16">
+                    <div class="max-w-md mx-auto text-center lg:max-w-none lg:col-span-3">
+                        <h1 class="text-4xl font-normal text-white uppercase sm:text-5xl lg:text-6xl xl:text-8xl">
+                            Dienguix <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">Transfert</span>
+                        </h1>
+                        <p class="mt-6 text-lg font-normal text-white sm:text-xl text-justify">DIENGUIX est la première
+                            plateforme de
+                            transfert d'argent mobile spécialement conçue pour connecter le Gabon et la Russie.
+                            Transférez vos fonds en toute sécurité, rapidement et sans complications administratives.
+                            <br>
+                            Que vous soyez étudiant, entrepreneur, ou que vous souhaitiez simplement envoyer de l'argent
+                            à vos proches, DIENGUIX facilite vos transferts internationaux entre ces deux pays avec des
+                            frais transparents et compétitifs
+
+                        </p>
+                        <div class="mt-8 sm:mt-10">
+                            <a href="#" title=""
+                                class="inline-flex items-center justify-center px-8 py-4 text-base font-normal text-white transition-all duration-200 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:contrast-150"
+                                role="button"> Télécharger Maintenant </a>
+                        </div>
+
+                        <p class="max-w-xs mx-auto mt-4 text-base font-normal text-gray-400 sm:mt-8">
+
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-2 lg:order-first">
+                        <img class="w-full max-w-lg mx-auto" src="public/images/home.png" alt="Home" />
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div
+                class="grid max-w-sm grid-cols-1 px-8 mx-auto text-center md:text-left gap-y-8 md:max-w-none md:mx-0 md:px-0 md:grid-cols-3">
+                <div class="lg:pr-20 md:pr-10">
+                    <img class="w-auto mx-auto h-24 md:h-28 md:mx-0" src="public/images/da4.png" alt="" />
+                    <h3 class="mt-8 text-xl font-normal text-white">Créer votre compte gratuitement .</h3>
+                </div>
+
+                <div class="w-48 h-px mx-auto bg-gray-900 md:hidden"></div>
+
+                <div class="md:border-gray-900 md:border-l md:px-10 lg:px-20">
+                    <img class="w-auto mx-auto h-24 md:h-28 md:mx-0" src="public/images/da2.png" alt="" />
+                    <h3 class="mt-8 text-xl font-normal text-white">Vérifiez votre identité. </h3>
+                </div>
+
+                <div class="w-48 h-px mx-auto bg-gray-900 md:hidden"></div>
+
+                <div class="md:border-gray-900 md:border-l md:pl-10 lg:pl-20">
+                    <img class="w-auto mx-auto h-24 md:h-28 md:mx-0" src="public/images/da3.png" alt="" />
+                    <h3 class="mt-8 text-xl font-normal text-white">Et profitez du service !</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="grid items-center grid-cols-1 lg:grid-cols-2 gap-x-16">
+                <div>
+                    <img class="w-full mx-auto" src="public/images/slide4n.png" alt="" />
+                </div>
+
+                <div>
+                    <h2 class="text-3xl font-normal text-white sm:text-4xl lg:text-5xl xl:text-6xl">Connaitre DIENGUIX
+                    </h2>
+                    <p class="mt-6 text-lg font-normal text-gray-400">DIENGUIX est née d'une vision simple mais
+                        puissante : faciliter les échanges financiers entre le Gabon et la Russie. Nous avons constaté
+                        que de nombreux Gabonais résidant en Russie, des étudiants, des entrepreneurs et des
+                        travailleurs, rencontraient d'énormes difficultés pour envoyer ou recevoir de l'argent entre ces
+                        deux pays.</p>
+                    <div class="relative inline-flex items-center justify-center mt-8 group">
+                        <!-- Dégradé jaune en arrière-plan -->
+                        <div
+                            class="absolute transition-all duration-200 rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600 group-hover:shadow-lg group-hover:shadow-yellow-500/50">
+                        </div>
+                        <!-- Bouton -->
+                        <a href="#" title=""
+                            class="relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-black bg-yellow-400 border border-transparent rounded-full transition-colors duration-200 group-hover:bg-yellow-500"
+                            role="button">
+                            En savoir plus
+                        </a>
+                    </div>
+
+
+                    <hr class="mt-8 border-gray-800 sm:mt-12" />
+
+                    <blockquote class="mt-8">
+                        <p class="text-lg font-normal text-white">“Les solutions traditionnelles sont lentes, coûteuses
+                            et compliquées. Les banques imposent des délais de plusieurs jours, des frais exorbitants et
+                            une paperasse interminable. Les services de transfert classiques ne sont pas toujours
+                            disponibles ou fiables pour ce corridor spécifique.”</p>
+                    </blockquote>
+                    <div class="flex items-center mt-8">
+                        <img class="object-cover w-12 h-12 rounded-full shrink-0" src="public/images/wissy.jpg"
+                            alt="" />
+                        <div class="ml-3">
+                            <p class="text-base font-normal text-white">Wissy D,</p>
+                            <p class="mt-px text-base font-normal text-gray-400">Etudiant gabonais dans une école
+                                d'informatique de Moscou</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div
+                class="grid items-center max-w-md grid-cols-1 mx-auto lg:max-w-none lg:mx-0 lg:grid-cols-2 gap-x-24 xl:gap-x-48 gap-y-12">
+                <div>
+                    <h2 class="text-3xl font-normal text-white sm:text-4xl lg:text-5xl xl:text-6xl">Le Mobile Money en
+                        lumière</h2>
+                    <p class="mt-8 text-xl font-normal text-white"><span
+                            class="text-transparent bg-clip-text text-yellow-400">Le mobile money et le wallet.</span>
+                        Au coeur de Dienguix.</p>
+                    <p class="mt-8 text-lg font-normal text-gray-400">Envoyer de l'argent en Russie depuis le Gabon via
+                        des opérateurs mobile mone comme Airtel Money ou Moov Money et recevez les sur vos comptes
+                        wallet ou encore vos banques numérisées en Russie.</p>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-0">
+                        <svg class="filter blur-3xl" style="filter: blur(64px)" width="644" height="411" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M180.781 217.613C85.977 122.809-63.572 134.004 31.232 39.2c94.804-94.804 495.712 1.312 590.516 96.116 94.804 94.804-152.396 152.395-247.2 247.199s-98.963-70.098-193.767-164.902Z"
+                                fill="url(#b)" />
+                            <defs>
+                                <!-- Dégradé noir -> jaune -->
+                                <linearGradient id="b" x1="663.883" y1="177.451" x2="295.437" y2="472.757"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#000000" /> <!-- Noir -->
+                                    <stop offset="100%" stop-color="#FFD700" /> <!-- Jaune doré -->
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <img class="relative w-full mx-auto" src="public/images/am.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div
+                class="grid items-center max-w-md grid-cols-1 mx-auto md:max-w-5xl gap-y-8 md:grid-cols-2 gap-x-12 xl:gap-x-16">
+                <div>
+                    <img class="w-full max-w-xs mx-auto" src="public/images/inscription.png" alt="" />
+                </div>
+
+                <div>
+                    <ul class="divide-y divide-gray-800">
+                        <li class="flex items-start py-6 sm:py-10">
+                            <div class="relative w-10 h-10 shrink-0">
+                                <!-- Halo jaune -->
+                                <div
+                                    class="absolute rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600">
+                                </div>
+
+                                <!-- Cercle noir -->
+                                <div
+                                    class="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-black">
+                                    <!-- Icône de téléchargement -->
+                                    <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <p class="ml-6 text-lg font-normal text-white sm:text-xl">
+                                Téléchargez l'application <span class="text-yellow-400 font-semibold">DIENGUIX</span>
+                                sur iOS ou Android.
+                                Créez votre compte en 2 minutes avec votre numéro de téléphone et une pièce d'identité.
+                            </p>
+                        </li>
+
+
+                        <li class="flex items-start py-6 sm:py-10">
+                            <div class="relative w-10 h-10 shrink-0">
+                                <div
+                                    class="absolute rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600">
+                                </div>
+                                <div
+                                    class="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-black">
+                                    <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 7l9-4 9 4-9 4-9-4zm0 6l9 4 9-4M3 7v6l9 4 9-4V7" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <p class="ml-6 text-lg font-normal text-white sm:text-xl">Entrez les coordonnées du
+                                destinataire en Russie : nom, prénom, et coordonnées bancaires russes.</p>
+                        </li>
+
+                        <li class="flex items-start py-6 sm:py-10">
+                            <div class="relative w-10 h-10 shrink-0">
+                                <!-- Halo jaune -->
+                                <div
+                                    class="absolute rounded-full -inset-px bg-gradient-to-r from-yellow-400 to-yellow-600">
+                                </div>
+
+                                <!-- Cercle noir -->
+                                <div
+                                    class="relative inline-flex items-center justify-center w-10 h-10 rounded-full bg-black">
+                                    <!-- Icône d’échange / change -->
+                                    <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M4 7h16M10 11l-6-6m6 6l-6 6M20 17H4m10-4l6 6m-6-6l6-6" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <p class="ml-6 text-lg font-normal text-white sm:text-xl">
+                                Choisissez le montant en Francs CFA, consultez le taux de change en temps réel et les
+                                frais applicables.
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative overflow-hidden bg-black">
+        <div
+            class="absolute bottom-0 right-0 transform translate-y-1/2 lg:bottom-auto lg:top-0 xl:-translate-x-20 2xl:-translate-x-40">
+            <svg class="filter blur-3xl" style="filter: blur(64px)" width="644" height="411" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M180.781 217.613C85.977 122.809-63.572 134.004 31.232 39.2c94.804-94.804 495.712 1.312 590.516 96.116 94.804 94.804-152.396 152.395-247.2 247.199s-98.963-70.098-193.767-164.902Z"
+                    fill="url(#b)" />
+                <defs>
+                    <!-- Dégradé noir -> jaune -->
+                    <linearGradient id="b" x1="663.883" y1="177.451" x2="295.437" y2="472.757"
+                        gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#000000" /> <!-- Noir -->
+                        <stop offset="100%" stop-color="#FFD700" /> <!-- Jaune doré -->
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+
+        <div class="absolute inset-0">
+            <img class="object-cover w-full h-full opacity-50 bg-blend-multiply"
+                src="https://landingfoliocom.imgix.net/store/collection/dusk/images/noise.png" alt="" />
+        </div>
+
+        <div class="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-24">
+                <div class="pt-12 sm:pt-16 lg:py-36">
+                    <h2 class="text-3xl font-normal text-white sm:text-4xl lg:text-5xl xl:text-6xl">DIENGUIX à portée de
+                        main !</h2>
+                    <p class="mt-4 text-lg font-normal text-white sm:mt-6 sm:text-xl">Rejoignez la révolution des
+                        transferts d'argent entre le Gabon et la Russie. Simple, rapide, sécurisé et abordable.</p>
+
+                    <p class="mt-8 text-lg font-normal text-white sm:text-xl sm:mt-12">Téléchargez DIENGUIX maintenant
+                        pour profiter de :</p>
+                    <ul class="mt-5 space-y-2">
+                        <li class="flex items-start text-lg font-normal text-gray-300">
+                            <span class="mr-3 text-lg"> 💸 </span>
+                            Des frais imbattables au regard des méthodes habituelles
+                        </li>
+
+                        <li class="flex items-start text-lg font-normal text-gray-300">
+                            <span class="mr-3 text-lg"> 🎁 </span>
+                            Les frais de votre 50 ième envoi vous seront offert
+                        </li>
+
+                        <li class="flex items-start text-lg font-normal text-gray-300">
+                            <span class="mr-3 text-lg"> ⌛️ </span>
+                            Un service rapide et qui se fait totalement de manière dématérialiser
+                        </li>
+                    </ul>
+
+                    <div
+                        class="flex flex-col items-center justify-center mt-8 space-y-5 md:mt-12 sm:flex-row sm:space-y-0 sm:space-x-5 sm:justify-start">
+                        <a href="#" title=""
+                            class="relative flex transition-all duration-200 transform hover:-translate-y-1"
+                            role="button">
+                            <!-- Bordure noir-jaune -->
+                            <div class="absolute rounded-xl bg-gradient-to-r from-black to-yellow-500 -inset-px"></div>
+
+                            <!-- Bouton inchangé -->
+                            <img class="relative w-auto rounded-xl h-14 md:h-12 lg:h-16"
+                                src="https://landingfoliocom.imgix.net/store/collection/dusk/images/application/2/app-store-button.svg"
+                                alt="Télécharger sur App Store" />
+                        </a>
+
+
+                        <a href="#" title=""
+                            class="relative flex transition-all duration-200 transform hover:-translate-y-1"
+                            role="button">
+                            <!-- Bordure noir-jaune -->
+                            <div class="absolute rounded-xl bg-gradient-to-r from-black to-yellow-500 -inset-px"></div>
+
+                            <!-- Bouton -->
+                            <img class="relative w-auto rounded-xl h-14 md:h-12 lg:h-16"
+                                src="https://landingfoliocom.imgix.net/store/collection/dusk/images/application/2/play-store-button.svg"
+                                alt="Télécharger sur Google Play" />
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="self-end mt-12 lg:mt-0">
+                    <img class="w-full max-w-sm mx-auto transform xl:translate-y-16 lg:max-w-none"
+                        src="public/images/handphone.png" alt="Mockup téléphone Dienguix" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-12 pb-8 bg-black lg:pt-20 xl:pt-24 sm:pt-16">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-12 xl:gap-x-16 gap-x-8">
+                <div class="col-span-2 md:col-span-4 lg:col-span-2">
+                    <a href="#" title="" class="flex">
+                        <img class="w-auto h-20" src="public/images/Dienguix_BG.png" alt="Logo Dienguix" />
+                    </a>
+                    <p class="mt-6 text-base font-normal text-gray-400">
+                        Service d'envoi d'argent du Gabon vers la Russie et vice-versa avec mobile money, wallet et
+                        comptes bancaires.
+                    </p>
+                </div>
+
+                <div>
+                    <h6 class="text-xs font-semibold tracking-widest text-gray-600 uppercase">Plateforme</h6>
+                    <ul class="mt-8 space-y-5">
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">À
+                                propos</a></li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Nouveautés</a>
+                        </li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Téléchargement</a>
+                        </li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6 class="text-xs font-semibold tracking-widest text-gray-600 uppercase">Ressources</h6>
+                    <ul class="mt-8 space-y-5">
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Guide
+                                d'utilisation</a></li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">API</a>
+                        </li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Newsletter</a>
+                        </li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6 class="text-xs font-semibold tracking-widest text-gray-600 uppercase">Produits</h6>
+                    <ul class="mt-8 space-y-5">
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Nos
+                                services</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h6 class="text-xs font-semibold tracking-widest text-gray-600 uppercase">Légal</h6>
+                    <ul class="mt-8 space-y-5">
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Guides</a>
+                        </li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Termes
+                                & Conditions</a></li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Privacy
+                                Policy</a></li>
+                        <li><a href="#"
+                                class="flex text-base font-normal transition-all transform text-gray-50 hover:text-yellow-400 hover:translate-x-1">Licences</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="mt-12 border-gray-900 lg:mt-20 xl:mt-24 sm:mt-16" />
+
+            <p class="mt-8 text-sm font-normal text-center text-gray-500">
+                © 2025, Tous droits réservés par Dienguix
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
